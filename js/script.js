@@ -1,13 +1,13 @@
 import './getJson.js';
 import './additional.js';
-import Drinks from './Drinks.js'
-import Home from './Home.js'
-import Pizza from './Pizza.js'
-import Discounts from './Discounts.js'
-import PizzaProduct from './PizzaProduct.js'
-import DiscountPromo from './DiscountPromo.js'
-import CartView from './CartView.js';
-import OrderView from './OrderView.js';
+import Drinks from './classes/Drinks.js'
+import Home from './classes/Home.js'
+import Pizza from './classes/Pizza.js'
+import Discounts from './classes/Discounts.js'
+import PizzaProduct from './classes/PizzaProduct.js'
+import DiscountPromo from './classes/DiscountPromo.js'
+import CartView from './classes/CartView.js';
+import OrderView from './classes/OrderView.js';
 
 
 const router = async () => {

@@ -1,5 +1,5 @@
 import AbstractView from './AbstractView.js';
-import {implementCart}  from './additional.js';
+import {implementCart}  from '../additional.js';
 
 export default class extends AbstractView {
     constructor(params) {
@@ -8,7 +8,7 @@ export default class extends AbstractView {
     }
 
     async getHtml() {
-        let response = await fetch('js/cart.html');
+        let response = await fetch('./js/views/cart.html');
         let content = await response.text();
         return content;
     }
