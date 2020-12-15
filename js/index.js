@@ -1,13 +1,17 @@
+import '../css/style.css';
+import '../css/fonts.css';
+import '../css/media.css';
+import '../css/normalize.css';
 import './getJson.js';
 import './additional.js';
-import Drinks from './classes/Drinks.js';
-import Home from './classes/Home.js';
-import Pizza from './classes/Pizza.js';
-import Discounts from './classes/Discounts.js';
-import PizzaProduct from './classes/PizzaProduct.js';
-import DiscountPromo from './classes/DiscountPromo.js';
-import CartView from './classes/CartView.js';
-import OrderView from './classes/OrderView.js';
+import Drinks from './views/Drinks.js';
+import Home from './views/Home.js';
+import Pizza from './views/Pizza.js';
+import Discounts from './views/Discounts.js';
+import PizzaProduct from './views/PizzaProduct.js';
+import DiscountPromo from './views/DiscountPromo.js';
+import CartView from './views/CartView.js';
+import OrderView from './views/OrderView.js';
 
 const router = async () => {
     const routes = [

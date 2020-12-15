@@ -1,19 +1,18 @@
 import AbstractView from './AbstractView.js';
-import {showPromo}  from '../additional.js';
 
 export default class extends AbstractView {
     constructor(params) {
         super(params);
-        this.setTitle('Промо');
+        this.setTitle('Напитки');
     }
 
     async getHtml() {
-        let response = await fetch('./js/views/discounts_promo.html');
+        let response = await fetch('../js/views/drinks.html');
         let content = await response.text();
         return content;
     }
 
     async additionalHtml() {
-        showPromo(this.params);
+       
     }
 }

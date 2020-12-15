@@ -1,19 +1,19 @@
 import AbstractView from './AbstractView.js';
-import { implementOrder } from '../additional.js';
+import {implementCart}  from '../additional.js';
 
 export default class extends AbstractView {
     constructor(params) {
         super(params);
-        this.setTitle('Заказ');
+        this.setTitle('Корзина');
     }
 
     async getHtml() {
-        let response = await fetch('./js/views/order.html');
+        let response = await fetch('../js/views/cart.html');
         let content = await response.text();
         return content;
     }
 
     async additionalHtml() {
-        implementOrder();
+        implementCart();
     }
 }

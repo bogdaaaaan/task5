@@ -378,7 +378,7 @@ export const implementOrder = async function() {
         document.querySelector('.button-block__cart').addEventListener('click', ()=> {
             if(!ifEmpty()) {
                 let body = getInfo();
-                sendOrder(body).then(data => success(data)).catch(alert('Error! Try again later'));
+                sendOrder(body).then(data => success(data)).catch(error => alert(error + 'Error! Try again later'));
             } else {
                 alert('Заполните все поля!');
             }
