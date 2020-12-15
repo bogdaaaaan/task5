@@ -14,21 +14,20 @@ export const implementSlider = async function() {
                         <span>` + slider_content[key].description + `</span>
                     </div>
                     
-                    <img src="`+ (slider_content[key].image).replace('$', slider_content[key].id) + `" alt="` + slider_content[key].alt + `">
+                    <img src="`+ (slider_content[key].image).replace('$', slider_content[key].id) + '" alt="' + slider_content[key].alt + `">
                 </a>
-
-                `
+                `;
                 document.querySelector('.buttons-list').innerHTML += `
                 <li class="slide-check"><button>` + slider_content[key].id + `</button></li>
-                `
+                `;
             }
             sliderLogic();
         }
     }).catch(function(error) {
-        console.log('Request failed', error)
-      })
+        console.log('Request failed', error);
+    });
     
-}
+};
 
 const sliderLogic = () => {
     var buttons = document.getElementsByClassName('slide-check');
@@ -39,7 +38,7 @@ const sliderLogic = () => {
         buttons[i].addEventListener('click', () => {
             current_slide = i;
             changeSlide(i);
-        })
+        });
     }
     buttons[0].click();
 
@@ -47,12 +46,12 @@ const sliderLogic = () => {
         for (let j = 0; j < buttons.length; j++) {
             if (j !== i) {
                 buttons[j].classList.remove('active-slide');
-                images[j].style.display = "none";
+                images[j].style.display = 'none';
                 images[j].classList.remove('active-link');
             }
             if (j === i) {
                 buttons[j].classList.add('active-slide');
-                images[j].style.display = "block";
+                images[j].style.display = 'block';
                 images[j].classList.add('active-link');
             }
         }
@@ -77,9 +76,9 @@ const sliderLogic = () => {
         changePosition('left');
     });
     changeSlideButtons[1].addEventListener('click', () => {
-        changePosition('right')
+        changePosition('right');
     });
-}
+};
 /* ================================================ End of Slider ================================================ */ 
 
 /* ================================================ Promo ================================================ */ 
@@ -90,7 +89,7 @@ export const implementPromo = async function() {
                 document.querySelector('.promo-list').innerHTML += `
                 <div class="promo-list__item">
                     <div class="promo-image">
-                        <img src="`+ (promo_content[key].image).replace('$', promo_content[key].id) +`" alt="`+ promo_content[key].alt +`">
+                        <img src="`+ (promo_content[key].image).replace('$', promo_content[key].id) +'" alt="'+ promo_content[key].alt +`">
                     </div>
                     <div class="promo-description">
                         <div class="promo-description__text">
@@ -113,16 +112,16 @@ export const implementPromo = async function() {
                         </div>
                     </div>
                 </div>
-                `
+                `;
             }
         }
     }).catch(function(error) {
-        console.log('Request failed', error)
-      });
-}
+        console.log('Request failed', error);
+    });
+};
 
 export const showPromo = async function(params) {
-    let url = (params.id)
+    let url = (params.id);
     let id = url.split('/')[1];
     var validUrl = false;
     promisedPromo.then((promo_content) => {
@@ -133,7 +132,7 @@ export const showPromo = async function(params) {
                     document.querySelector('.promo-list').innerHTML += `
                     <div class="promo-list__item">
                         <div class="promo-image">
-                            <img src="`+ (promo_content[key].image).replace('$', promo_content[key].id) +`" alt="`+ promo_content[key].alt +`">
+                            <img src="`+ (promo_content[key].image).replace('$', promo_content[key].id) +'" alt="'+ promo_content[key].alt +`">
                         </div>
                         <div class="promo-description">
                             <div class="promo-description__text">
@@ -151,7 +150,7 @@ export const showPromo = async function(params) {
                             </div>
                         </div>
                     </div>
-                    `
+                    `;
                 }
             }
         }
@@ -159,9 +158,9 @@ export const showPromo = async function(params) {
             navigateTo('#');
         }
     }).catch(function(error) {
-        console.log('Request failed', error)
-      })
-}
+        console.log('Request failed', error);
+    });
+};
 /* ================================================ End of Promo ================================================ */ 
 
 /* ================================================ Fill page with Pizza ================================================ */ 
@@ -176,25 +175,25 @@ export const fillPage = async function() {
                         
                     </div>
                 </div>
-                `
+                `;
             }
         }
         promisedPizza.then((pizza_content) => {
             if (pizza_content.length > 0) {
                 for (let key in pizza_content) {
-                    let url = "#pizza/" + pizza_content[key].category + "/" + pizza_content[key].url;
+                    let url = '#pizza/' + pizza_content[key].category + '/' + pizza_content[key].url;
                     document.getElementById(pizza_content[key].categoryId).innerHTML += `
                     <div class="product-list__item">
                         <div class="product-block">
                             <div class="product-block__image">
-                                <a href="`+ url + `"><img src="`+ (pizza_content[key].images).replace('$', pizza_content[key].url) +`" alt="`+ pizza_content[key].productName+`"></a>
+                                <a href="`+ url + '"><img src="'+ (pizza_content[key].images).replace('$', pizza_content[key].url) +'" alt="'+ pizza_content[key].productName+`"></a>
                             </div>
                             <div class="product-block__description">
                                 <div class="block-description__title">
-                                    <a href="`+ url +`">` + pizza_content[key].productName + `</a>
+                                    <a href="`+ url +'">' + pizza_content[key].productName + `</a>
                                 </div>
                                 <div class="block-description__ingridients">
-                                    <span id="ingridients-list`+pizza_content[key].id+`">` + "" + `</span>
+                                    <span id="ingridients-list`+pizza_content[key].id+'">' + '' + `</span>
                                 </div>
                                 <div class="block-description__options">
     
@@ -219,41 +218,41 @@ export const fillPage = async function() {
                             </div>
                         </div>
                     </div>
-                    `
+                    `;
                     let id = 'ingridients-list' + pizza_content[key].id;
                     let array = pizza_content[key].ingridients;
                     let str = '';
                     promisedIngridients.then(ingridients => {
                         for (let key in ingridients) {
                             if (array.includes(ingridients[key].id)) {
-                                str += (ingridients[key].name) + ", ";
+                                str += (ingridients[key].name) + ', ';
                             }
                         }
                         document.getElementById(id).innerHTML += str.substr(0, str.length-2);
                     }).catch(function(error) {
-                        console.log('Request failed', error)
-                      })
+                        console.log('Request failed', error);
+                    });
                 }
             }
         })  
+            .catch(function(error) {
+                console.log('Request failed', error);
+            });
+    })
         .catch(function(error) {
-            console.log('Request failed', error)
-        })
-    })
-    .catch(function(error) {
-        console.log('Request failed', error)
-    })
+            console.log('Request failed', error);
+        });
     window.onclick = event => {
         if (event.target.classList.contains('button-block__cart')) {
             addToCart(Number(event.target.dataset.id));
         }
-    }
-}
+    };
+};
 /* ================================================ End of Filling page with Pizza ================================================ */ 
 
 /* ================================================ Product ================================================ */ 
 export const showCard = async function(params)  {
-    let url = (params.id)
+    let url = (params.id);
     let category = url.split('/')[0];
     let name = url.split('/')[1];
     var validUrl = false;
@@ -265,15 +264,15 @@ export const showCard = async function(params)  {
                     validUrl = true;
                     document.querySelector('.product-name').innerHTML += `
                         <span>`+ pizza[key].productName +`</span>
-                    `
+                    `;
                     document.querySelector('.product-image').innerHTML += `
-                        <img src="`+ (pizza[key].images).replace('$', pizza[key].url) + `" alt="`+pizza[key].productName+`">
-                    `
+                        <img src="`+ (pizza[key].images).replace('$', pizza[key].url) + '" alt="'+pizza[key].productName+`">
+                    `;
                     document.querySelector('.product-buy').innerHTML =`
                     <div class="button-block">
                         <button class="button-block__cart" data-id="`+pizza[key].id +`">В корзину</button>
                     </div>
-                    `            
+                    `;            
                     let ingridients_list = pizza[key].ingridients;
                     promisedIngridients.then(ingridients => {
                         for (let key in ingridients) {
@@ -281,16 +280,16 @@ export const showCard = async function(params)  {
                                 document.querySelector('.ingridients-list').innerHTML += `
                                 <div class="ingridients-list__item">
                                     <div class="ingridients-item__img">
-                                        <img src="`+ (ingridients[key].img).replace('$', ingridients[key].id) + `" alt="`+ ingridients[key].name +`">
+                                        <img src="`+ (ingridients[key].img).replace('$', ingridients[key].id) + '" alt="'+ ingridients[key].name +`">
                                     </div>
                                     <div class="ingridients-item__description">
                                         <span>`+ ingridients[key].name +`</span>
                                     </div>
                                 </div>
-                                `
+                                `;
                             }
                         }
-                    })
+                    });
                     keys = pizza[key].relatedProductIds;
                 } 
             }
@@ -305,30 +304,30 @@ export const showCard = async function(params)  {
                         document.querySelector('.related-products__list').innerHTML += `
                             <div class="related-list__item">
                                 <div class="related-item__img">
-                                    <a href="` + "#pizza/" + pizza[key].category + "/" + pizza[key].url + `">
-                                        <img src="`+ (pizza[key].images).replace('$', pizza[key].url) + `" alt="`+pizza[key].productName +`">
+                                    <a href="` + '#pizza/' + pizza[key].category + '/' + pizza[key].url + `">
+                                        <img src="`+ (pizza[key].images).replace('$', pizza[key].url) + '" alt="'+pizza[key].productName +`">
                                     </a>
                                 </div>
                                 <div class="related-item__title">
                                     <span>`+pizza[key].productName +`</span>
                                 </div>
                             </div>
-                        `
+                        `;
                     } 
                 }
             }
         }).catch(function(error) {
-            console.log('Request failed', error)
-        })
+            console.log('Request failed', error);
+        });
     }).catch(function(error) {
-        console.log('Request failed', error)
-    })
+        console.log('Request failed', error);
+    });
     window.onclick = event => {
         if (event.target.classList.contains('button-block__cart')) {
             addToCart(Number(event.target.dataset.id));
         }
-    }
-}
+    };
+};
 /* ================================================ End of Product ================================================ */ 
 
 /* ================================================ Order ================================================ */ 
@@ -339,16 +338,16 @@ export const implementOrder = async function() {
             for (let key in pizza_content) {
                 cart.forEach(element => {
                     if (pizza_content[key].id === element.id) {
-                        let url = "#pizza/" + pizza_content[key].category + "/" + pizza_content[key].url;
+                        let url = '#pizza/' + pizza_content[key].category + '/' + pizza_content[key].url;
                         document.querySelector('.cart-block').innerHTML += `
                         <div class="cart-list__item">
                             <div class="product-block">
                                 <div class="product-block__image">
-                                    <a href="`+ url + `"><img src="`+ (pizza_content[key].images).replace('$', pizza_content[key].url) +`" alt="`+ pizza_content[key].productName+`"></a>
+                                    <a href="`+ url + '"><img src="'+ (pizza_content[key].images).replace('$', pizza_content[key].url) +'" alt="'+ pizza_content[key].productName+`"></a>
                                 </div>
                                 <div class="product-block__description">
                                     <div class="block-description__title">
-                                        <a href="`+ url +`">` + pizza_content[key].productName + `</a>
+                                        <a href="`+ url +'">' + pizza_content[key].productName + `</a>
                                     </div>
                                     <div class="price-block">
                                         <span class="pizza-price-number">`+pizza_content[key].price +`</span>
@@ -357,17 +356,17 @@ export const implementOrder = async function() {
                                     <div class="cart-description__buy">
                                         
                                         <div class="cart-button-block">
-                                            <span>Кол-во: </span><span id="quantity`+pizza_content[key].id+`">`+ element.quantity +`</span>
+                                            <span>Кол-во: </span><span id="quantity`+pizza_content[key].id+'">'+ element.quantity +`</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        `
+                        `;
                     }
                 });
             } 
-        })
+        });
         document.querySelector('.order-block').innerHTML += `
         <div class="total-cost">
             <span>Общая стоимость: </span><span id="total-cost"></span><span > грн.</span>
@@ -375,18 +374,18 @@ export const implementOrder = async function() {
         <div class="order-button">
             <input type="submit" class="button-block__cart" value="Заказать"></input>
         </div>
-        `
+        `;
         document.querySelector('.button-block__cart').addEventListener('click', ()=> {
             if(!ifEmpty()) {
                 let body = getInfo();
-                sendOrder(body).then(data => success(data)).catch(err => alert('Error! Try again later'));
+                sendOrder(body).then(data => success(data)).catch(alert('Error! Try again later'));
             } else {
                 alert('Заполните все поля!');
             }
-        })
+        });
         updateTotalCost();
     }
-}
+};
 
 const getInfo = function() {
     let name = document.getElementById('name').value;
@@ -405,8 +404,8 @@ const getInfo = function() {
         payment : payment,
         total : totalCost,
         cart : cart
-    }    
-}
+    };    
+};
 
 const ifEmpty = () => {
     let body = getInfo();
@@ -428,43 +427,43 @@ const ifEmpty = () => {
     if (body.totalCost ===  0) {
         return true;
     }
-    return false
-}
+    return false;
+};
 
 const success = (data) => {
     document.getElementById('root').innerHTML = `
     <div class="container">
         <div class="info-wrap">
             <div class="person-info">
-                <div class="person-name">`+"Имя: "+data.name +`</div>
-                <div class="person-phone">`+"Телефон: "+data.phone+`</div>
-                <div class="person-mail">`+"Почта: "+data.mail+`</div>
-                <div class="date-of-order">`+"Дата: "+data.date+`</div>
-                <div class="time-of-order">`+"Время: "+data.time+`</div>
-                <div class="payment-option">`+"Способ оплаты: "+data.payment+`</div>
-                <div class="total-cost">`+"Общая стоимость: "+data.total+" .грн"+`</div>
+                <div class="person-name">`+'Имя: '+data.name +`</div>
+                <div class="person-phone">`+'Телефон: '+data.phone+`</div>
+                <div class="person-mail">`+'Почта: '+data.mail+`</div>
+                <div class="date-of-order">`+'Дата: '+data.date+`</div>
+                <div class="time-of-order">`+'Время: '+data.time+`</div>
+                <div class="payment-option">`+'Способ оплаты: '+data.payment+`</div>
+                <div class="total-cost">`+'Общая стоимость: '+data.total+' .грн'+`</div>
             </div>
             <div class="products-block">
             </div>
         </div>
     </div>
-    `
+    `;
     let cart = JSON.parse(localStorage.getItem('cart'));
     if (cart !== null) {
         promisedPizza.then(pizza_content => {
             for (let key in pizza_content) {
                 cart.forEach(element => {
                     if (pizza_content[key].id === element.id) {
-                        let url = "#pizza/" + pizza_content[key].category + "/" + pizza_content[key].url;
+                        let url = '#pizza/' + pizza_content[key].category + '/' + pizza_content[key].url;
                         document.querySelector('.products-block').innerHTML += `
                         <div class="cart-list__item">
                             <div class="product-block">
                                 <div class="product-block__image">
-                                    <a href="`+ url + `"><img src="`+ (pizza_content[key].images).replace('$', pizza_content[key].url) +`" alt="`+ pizza_content[key].productName+`"></a>
+                                    <a href="`+ url + '"><img src="'+ (pizza_content[key].images).replace('$', pizza_content[key].url) +'" alt="'+ pizza_content[key].productName+`"></a>
                                 </div>
                                 <div class="product-block__description">
                                     <div class="block-description__title">
-                                        <a href="`+ url +`">` + pizza_content[key].productName + `</a>
+                                        <a href="`+ url +'">' + pizza_content[key].productName + `</a>
                                     </div>
                                     <div class="price-block">
                                         <span class="pizza-price-number">`+pizza_content[key].price +`</span>
@@ -472,19 +471,19 @@ const success = (data) => {
                                     </div>
                                     <div class="cart-description__buy">
                                         <div class="cart-button-block">
-                                            <span>Кол-во: </span><span id="quantity`+pizza_content[key].id+`">`+ element.quantity +`</span>
+                                            <span>Кол-во: </span><span id="quantity`+pizza_content[key].id+'">'+ element.quantity +`</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        `
+                        `;
                     }
                 }); 
             } 
-        })
+        });
     }
-}
+};
 
 function updateTotalCost() {
     let totalCost = 0;
@@ -497,7 +496,7 @@ function updateTotalCost() {
             });
         }
         document.getElementById('total-cost').innerHTML = totalCost.toFixed(2);
-    })
+    });
 }
 /* ================================================ End of Order ================================================ */ 
 
@@ -510,16 +509,16 @@ export const implementCart = async function() {
             for (let key in pizza_content) {
                 cart.forEach(element => {
                     if (pizza_content[key].id === element.id) {
-                        let url = "#pizza/" + pizza_content[key].category + "/" + pizza_content[key].url;
+                        let url = '#pizza/' + pizza_content[key].category + '/' + pizza_content[key].url;
                         document.querySelector('.cart-list__container').innerHTML += `
                         <div class="cart-list__item">
                             <div class="product-block">
                                 <div class="product-block__image">
-                                    <a href="`+ url + `"><img src="`+ (pizza_content[key].images).replace('$', pizza_content[key].url) +`" alt="`+ pizza_content[key].productName+`"></a>
+                                    <a href="`+ url + '"><img src="'+ (pizza_content[key].images).replace('$', pizza_content[key].url) +'" alt="'+ pizza_content[key].productName+`"></a>
                                 </div>
                                 <div class="product-block__description">
                                     <div class="block-description__title">
-                                        <a href="`+ url +`">` + pizza_content[key].productName + `</a>
+                                        <a href="`+ url +'">' + pizza_content[key].productName + `</a>
                                     </div>
                                     <div class="price-block">
                                             <span class="pizza-price-number">`+pizza_content[key].price +`</span>
@@ -530,17 +529,17 @@ export const implementCart = async function() {
                                         <div class="cart-button-block">
                                             <button class="quantity-button plus" data-id="`+pizza_content[key].id +`">+</button>
                                             <button class="quantity-button minus" data-id="`+pizza_content[key].id +`">-</button>
-                                            <span>Кол-во: </span><span id="quantity`+pizza_content[key].id+`">`+ element.quantity +`</span>
+                                            <span>Кол-во: </span><span id="quantity`+pizza_content[key].id+'">'+ element.quantity +`</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        `
+                        `;
                     }
                 });
             } 
-        })
+        });
         document.querySelector('.cart-order').innerHTML += `
         <div class="total-cost">
             <span>Общая стоимость: </span><span id="total-cost"></span><span > грн.</span>
@@ -550,8 +549,8 @@ export const implementCart = async function() {
                 <button class="button-block__cart"> Заказать </button>
             </a>
         </div>
-        `
-        updateTotalCost()
+        `;
+        updateTotalCost();
     }
     window.onclick = event => {
         if (event.target.classList.contains('plus')) {
@@ -562,8 +561,8 @@ export const implementCart = async function() {
             minusQuantity(Number(event.target.dataset.id));
             updateTotalCost();
         }
-    }
-}
+    };
+};
 
 let cart = [
 
@@ -573,7 +572,7 @@ if (localStorage.getItem('cart') !== '') {
     if (local_cart !== null ) {
         local_cart.forEach(element => {
             cart.push(element);
-        })
+        });
     }
 }
 
@@ -598,7 +597,7 @@ function plusQuantity(id) {
             localStorage.setItem('cart', JSON.stringify(cart));
             document.getElementById('quantity'+id).innerHTML = element.quantity;
         }
-    })
+    });
 }
 
 function minusQuantity(id) {
@@ -609,11 +608,11 @@ function minusQuantity(id) {
                 cart = deleteFromCart(id);
             }
             localStorage.setItem('cart', JSON.stringify(cart));
-            document.querySelector('.cart-list__container').innerHTML = "";
-            document.querySelector('.cart-order').innerHTML = "";
+            document.querySelector('.cart-list__container').innerHTML = '';
+            document.querySelector('.cart-order').innerHTML = '';
             implementCart();
         }
-    })
+    });
 }
 
 function deleteFromCart(id) {
@@ -622,7 +621,7 @@ function deleteFromCart(id) {
         if (element.id !== id) {
             temp_cart.push(element);
         }
-    })
+    });
     return temp_cart;
 }
 /* ================================================ End of Cart ================================================ */ 
