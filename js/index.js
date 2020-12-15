@@ -9,7 +9,6 @@ import DiscountPromo from './classes/DiscountPromo.js'
 import CartView from './classes/CartView.js';
 import OrderView from './classes/OrderView.js';
 
-
 const router = async () => {
     const routes = [
         { path: "#", view: Home },
@@ -79,7 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
     router();
 });
 
-// Side menu button
 document.getElementById('side-menu-btn').addEventListener('click', ()=> {
     document.querySelector('.header__hamburger-menu').classList.toggle('open');
     document.querySelector('.side-menu').classList.toggle('open');

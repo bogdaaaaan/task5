@@ -1,8 +1,8 @@
 import {promisedSlider, promisedPromo, promisedCategory, promisedPizza, promisedIngridients} from './getJson.js';
-import {navigateTo} from './script.js';
+import {navigateTo} from './index.js';
 import {sendOrder} from './sendOrder.js';
 
-// Slider
+/* ================================================ Slider ================================================ */ 
 export const implementSlider = async function() {
     promisedSlider.then((slider_content) => {
         if (slider_content.length > 0) {
@@ -22,9 +22,7 @@ export const implementSlider = async function() {
                 <li class="slide-check"><button>` + slider_content[key].id + `</button></li>
                 `
             }
-
             sliderLogic();
-
         }
     }).catch(function(error) {
         console.log('Request failed', error)
@@ -37,14 +35,12 @@ const sliderLogic = () => {
     var images = document.getElementsByClassName('slider-link');
     var changeSlideButtons = document.getElementsByClassName('slide-changer');
     var current_slide = 0;
-    
     for (let i = 0; i < buttons.length; i++) {
         buttons[i].addEventListener('click', () => {
             current_slide = i;
             changeSlide(i);
         })
     }
-    
     buttons[0].click();
 
     function changeSlide(i) {
@@ -76,7 +72,7 @@ const sliderLogic = () => {
         }
         changeSlide(current_slide);
     }
-    
+
     changeSlideButtons[0].addEventListener('click', () => {
         changePosition('left');
     });
@@ -84,8 +80,9 @@ const sliderLogic = () => {
         changePosition('right')
     });
 }
+/* ================================================ End of Slider ================================================ */ 
 
-// Promo
+/* ================================================ Promo ================================================ */ 
 export const implementPromo = async function() {
     promisedPromo.then((promo_content) => {
         if (promo_content.length > 0) {
@@ -118,14 +115,56 @@ export const implementPromo = async function() {
                 </div>
                 `
             }
-
         }
     }).catch(function(error) {
         console.log('Request failed', error)
       });
 }
 
-//Pizza
+export const showPromo = async function(params) {
+    let url = (params.id)
+    let id = url.split('/')[1];
+    var validUrl = false;
+    promisedPromo.then((promo_content) => {
+        if (promo_content.length > 0) {
+            for (let key in promo_content) {
+                if (promo_content[key].id === Number(id)) {
+                    validUrl = true;
+                    document.querySelector('.promo-list').innerHTML += `
+                    <div class="promo-list__item">
+                        <div class="promo-image">
+                            <img src="`+ (promo_content[key].image).replace('$', promo_content[key].id) +`" alt="`+ promo_content[key].alt +`">
+                        </div>
+                        <div class="promo-description">
+                            <div class="promo-description__text">
+                                <div class="text-date">
+                                    `+ promo_content[key].promoDate +`
+                                </div>
+                                <div class="text-title">
+                                    `+ promo_content[key].promoName +`
+                                </div>
+                                <div class="text-main">
+                                    <span>
+                                        `+ promo_content[key].promoDescription +`
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    `
+                }
+            }
+        }
+        if (!validUrl) {
+            navigateTo('#');
+        }
+    }).catch(function(error) {
+        console.log('Request failed', error)
+      })
+}
+/* ================================================ End of Promo ================================================ */ 
+
+/* ================================================ Fill page with Pizza ================================================ */ 
 export const fillPage = async function() {
     promisedCategory.then((category) => {
         if (category.length > 0) {
@@ -189,20 +228,17 @@ export const fillPage = async function() {
                             if (array.includes(ingridients[key].id)) {
                                 str += (ingridients[key].name) + ", ";
                             }
-                            
                         }
                         document.getElementById(id).innerHTML += str.substr(0, str.length-2);
                     }).catch(function(error) {
                         console.log('Request failed', error)
                       })
-                   
                 }
             }
         })  
         .catch(function(error) {
             console.log('Request failed', error)
         })
-        
     })
     .catch(function(error) {
         console.log('Request failed', error)
@@ -213,9 +249,9 @@ export const fillPage = async function() {
         }
     }
 }
+/* ================================================ End of Filling page with Pizza ================================================ */ 
 
-
-// Product
+/* ================================================ Product ================================================ */ 
 export const showCard = async function(params)  {
     let url = (params.id)
     let category = url.split('/')[0];
@@ -238,9 +274,7 @@ export const showCard = async function(params)  {
                         <button class="button-block__cart" data-id="`+pizza[key].id +`">В корзину</button>
                     </div>
                     `            
-
                     let ingridients_list = pizza[key].ingridients;
-
                     promisedIngridients.then(ingridients => {
                         for (let key in ingridients) {
                             if (ingridients_list.includes(ingridients[key].id)) {
@@ -254,11 +288,9 @@ export const showCard = async function(params)  {
                                     </div>
                                 </div>
                                 `
-                                
                             }
                         }
                     })
-
                     keys = pizza[key].relatedProductIds;
                 } 
             }
@@ -297,50 +329,9 @@ export const showCard = async function(params)  {
         }
     }
 }
+/* ================================================ End of Product ================================================ */ 
 
-export const showPromo = async function(params) {
-    let url = (params.id)
-    let id = url.split('/')[1];
-    var validUrl = false;
-    promisedPromo.then((promo_content) => {
-        if (promo_content.length > 0) {
-            for (let key in promo_content) {
-                if (promo_content[key].id === Number(id)) {
-                    validUrl = true;
-                    document.querySelector('.promo-list').innerHTML += `
-                    <div class="promo-list__item">
-                        <div class="promo-image">
-                            <img src="`+ (promo_content[key].image).replace('$', promo_content[key].id) +`" alt="`+ promo_content[key].alt +`">
-                        </div>
-                        <div class="promo-description">
-                            <div class="promo-description__text">
-                                <div class="text-date">
-                                    `+ promo_content[key].promoDate +`
-                                </div>
-                                <div class="text-title">
-                                    `+ promo_content[key].promoName +`
-                                </div>
-                                <div class="text-main">
-                                    <span>
-                                        `+ promo_content[key].promoDescription +`
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    `
-                }
-            }
-
-        }
-        if (!validUrl) {
-            navigateTo('#');
-        }
-    }).catch(function(error) {
-        console.log('Request failed', error)
-      })
-}
-
+/* ================================================ Order ================================================ */ 
 export const implementOrder = async function() {
     let cart = JSON.parse(localStorage.getItem('cart'));
     if (cart !== null) {
@@ -375,7 +366,6 @@ export const implementOrder = async function() {
                         `
                     }
                 });
-                
             } 
         })
         document.querySelector('.order-block').innerHTML += `
@@ -386,8 +376,6 @@ export const implementOrder = async function() {
             <input type="submit" class="button-block__cart" value="Заказать"></input>
         </div>
         `
-        
-
         document.querySelector('.button-block__cart').addEventListener('click', ()=> {
             if(!ifEmpty()) {
                 let body = getInfo();
@@ -395,7 +383,6 @@ export const implementOrder = async function() {
             } else {
                 alert('Заполните все поля!');
             }
-            
         })
         updateTotalCost();
     }
@@ -458,7 +445,6 @@ const success = (data) => {
                 <div class="total-cost">`+"Общая стоимость: "+data.total+" .грн"+`</div>
             </div>
             <div class="products-block">
-                
             </div>
         </div>
     </div>
@@ -485,7 +471,6 @@ const success = (data) => {
                                         <span class="pizza-price-text">грн.</span>
                                     </div>
                                     <div class="cart-description__buy">
-                                        
                                         <div class="cart-button-block">
                                             <span>Кол-во: </span><span id="quantity`+pizza_content[key].id+`">`+ element.quantity +`</span>
                                         </div>
@@ -495,13 +480,29 @@ const success = (data) => {
                         </div>
                         `
                     }
-                });
-                
+                }); 
             } 
         })
     }
 }
 
+function updateTotalCost() {
+    let totalCost = 0;
+    promisedPizza.then(pizza_content => {
+        for (let key in pizza_content) {
+            cart.forEach(element => {
+                if (pizza_content[key].id === element.id) {
+                    totalCost += (pizza_content[key].price * element.quantity);
+                }
+            });
+        }
+        document.getElementById('total-cost').innerHTML = totalCost.toFixed(2);
+    })
+}
+/* ================================================ End of Order ================================================ */ 
+
+
+/* ================================================ Cart ================================================ */ 
 export const implementCart = async function() {
     let cart = JSON.parse(localStorage.getItem('cart'));
     if (cart !== null) {
@@ -536,10 +537,8 @@ export const implementCart = async function() {
                             </div>
                         </div>
                         `
-                        
                     }
                 });
-                
             } 
         })
         document.querySelector('.cart-order').innerHTML += `
@@ -566,7 +565,6 @@ export const implementCart = async function() {
     }
 }
 
-
 let cart = [
 
 ];
@@ -578,7 +576,6 @@ if (localStorage.getItem('cart') !== '') {
         })
     }
 }
-
 
 async function addToCart(id) {
     let alreadyInCart = false;
@@ -594,7 +591,6 @@ async function addToCart(id) {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
-
 function plusQuantity(id) {
     cart.forEach(element => {
         if (element.id === id) {
@@ -604,7 +600,6 @@ function plusQuantity(id) {
         }
     })
 }
-
 
 function minusQuantity(id) {
     cart.forEach(element => {
@@ -630,20 +625,4 @@ function deleteFromCart(id) {
     })
     return temp_cart;
 }
-
-function updateTotalCost() {
-    let totalCost = 0;
-    promisedPizza.then(pizza_content => {
-        for (let key in pizza_content) {
-            cart.forEach(element => {
-                if (pizza_content[key].id === element.id) {
-                    totalCost += (pizza_content[key].price * element.quantity);
-                    
-                }
-            });
-            
-        }
-        document.getElementById('total-cost').innerHTML = totalCost.toFixed(2);
-    })
-    
-}
+/* ================================================ End of Cart ================================================ */ 
