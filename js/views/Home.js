@@ -1,6 +1,8 @@
 import AbstractView from './AbstractView.js';
 import {implementSlider, fillPage} from '../additional.js';
 
+const fetch = require("node-fetch");
+
 export default class extends AbstractView {
     constructor(params) {
         super(params);

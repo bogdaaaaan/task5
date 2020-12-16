@@ -1,5 +1,6 @@
+var regeneratorRuntime = require("regenerator-runtime");
+
 import {promisedSlider, promisedPromo, promisedCategory, promisedPizza, promisedIngridients} from './getJson.js';
-import {navigateTo} from './index.js';
 import {sendOrder} from './sendOrder.js';
 
 /* ================================================ Slider ================================================ */ 
@@ -155,7 +156,7 @@ export const showPromo = async function(params) {
             }
         }
         if (!validUrl) {
-            navigateTo('#');
+            history.pushState(null, null, '#');
         }
     }).catch(function(error) {
         console.log('Request failed', error);
@@ -294,7 +295,7 @@ export const showCard = async function(params)  {
                 } 
             }
             if (!validUrl) {
-                navigateTo('#');
+                history.pushState(null, null, '#');
             }
         }
         promisedPizza.then(pizza => {
@@ -564,9 +565,19 @@ export const implementCart = async function() {
     };
 };
 
+
 let cart = [
 
 ];
+
+export function setCart(params) {
+    cart = params;
+}
+
+export function getCart() {
+    return cart;
+}
+
 if (localStorage.getItem('cart') !== '') {
     let local_cart = JSON.parse(localStorage.getItem('cart'));
     if (local_cart !== null ) {
@@ -576,7 +587,7 @@ if (localStorage.getItem('cart') !== '') {
     }
 }
 
-async function addToCart(id) {
+export async function addToCart(id) {
     let alreadyInCart = false;
     cart.forEach(element => {
         if(id === element.id) {
@@ -590,7 +601,7 @@ async function addToCart(id) {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
-function plusQuantity(id) {
+export function plusQuantity(id) {
     cart.forEach(element => {
         if (element.id === id) {
             element.quantity++;
@@ -600,7 +611,7 @@ function plusQuantity(id) {
     });
 }
 
-function minusQuantity(id) {
+export function minusQuantity(id) {
     cart.forEach(element => {
         if (element.id === id) {
             element.quantity--;
@@ -615,7 +626,7 @@ function minusQuantity(id) {
     });
 }
 
-function deleteFromCart(id) {
+export function deleteFromCart(id) {
     let temp_cart = [];
     cart.forEach(element => {
         if (element.id !== id) {

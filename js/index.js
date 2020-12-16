@@ -1,7 +1,8 @@
-import '../css/style.css';
-import '../css/fonts.css';
-import '../css/media.css';
 import '../css/normalize.css';
+import '../css/fonts.css';
+import '../css/style.css';
+import '../css/media.css';
+
 import './getJson.js';
 import './additional.js';
 import Drinks from './views/Drinks.js';
@@ -82,7 +83,12 @@ document.addEventListener('DOMContentLoaded', () => {
     router();
 });
 
-document.getElementById('side-menu-btn').addEventListener('click', ()=> {
-    document.querySelector('.header__hamburger-menu').classList.toggle('open');
-    document.querySelector('.side-menu').classList.toggle('open');
-});
+let side_btn = document.getElementById('side-menu-btn');
+if (side_btn) {
+    side_btn.addEventListener('click', ()=> {
+        document.querySelector('.header__hamburger-menu').classList.toggle('open');
+        document.querySelector('.side-menu').classList.toggle('open');
+    });
+}
+
+

@@ -1,3 +1,5 @@
+var regeneratorRuntime = require("regenerator-runtime");
+
 export default class {
     constructor(params) {
         this.params = params;
