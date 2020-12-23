@@ -1,4 +1,4 @@
-var regeneratorRuntime = require("regenerator-runtime");
+var regeneratorRuntime = require('regenerator-runtime');
 
 export default class {
     constructor(params) {

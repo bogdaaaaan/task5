@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1608086768402" clover="3.2.0">
-  <project timestamp="1608086768402" name="All files">
-    <metrics statements="246" coveredstatements="46" conditionals="96" coveredconditionals="4" methods="67" coveredmethods="12" elements="409" coveredelements="62" complexity="0" loc="246" ncloc="246" packages="2" files="4" classes="4"/>
+<coverage generated="1608739559832" clover="3.2.0">
+  <project timestamp="1608739559832" name="All files">
+    <metrics statements="254" coveredstatements="49" conditionals="96" coveredconditionals="4" methods="70" coveredmethods="13" elements="420" coveredelements="66" complexity="0" loc="254" ncloc="254" packages="2" files="5" classes="5"/>
     <package name="js">
       <metrics statements="241" coveredstatements="41" conditionals="96" coveredconditionals="4" methods="63" coveredmethods="8"/>
       <file name="additional.js" path="D:\git repo\task5\js\additional.js">
@@ -256,14 +256,25 @@
       </file>
     </package>
     <package name="js.views">
-      <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
+      <metrics statements="13" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="5"/>
       <file name="AbstractView.js" path="D:\git repo\task5\js\views\AbstractView.js">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
         <line num="13" count="1" type="stmt"/>
         <line num="17" count="1" type="stmt"/>
+      </file>
+      <file name="Home.js" path="D:\git repo\task5\js\views\Home.js">
+        <metrics statements="8" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
       </file>
     </package>
   </project>

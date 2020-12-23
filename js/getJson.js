@@ -1,5 +1,5 @@
-const fetch = require("node-fetch");
-var regeneratorRuntime = require("regenerator-runtime");
+const fetch = require('node-fetch');
+var regeneratorRuntime = require('regenerator-runtime');
 
 const link = 'https://my-json-server.typicode.com/bogdaaaaan/db-pizza';
 const link2 = 'https://my-json-server.typicode.com/bogdaaaaan/db-pizza2';

@@ -1,4 +1,4 @@
-var regeneratorRuntime = require("regenerator-runtime");
+var regeneratorRuntime = require('regenerator-runtime');
 
 import {promisedSlider, promisedPromo, promisedCategory, promisedPizza, promisedIngridients} from './getJson.js';
 import {sendOrder} from './sendOrder.js';

@@ -1,8 +1,10 @@
+/* eslint-env jest */
+
 import '../sendOrder.js';
 import { sendOrder } from '../sendOrder.js';
 
 describe('Send order test', () => {
-    it( 'it should return response with id of 17', () => {
+    it( 'it should return response with id of 17', async () => {
         let body = { 
             name : 'name',
             phone : 'phone', 
@@ -12,8 +14,8 @@ describe('Send order test', () => {
             payment : 'payment',
             total : 'totalCost',
             cart : 'cart'
-        }
-        return sendOrder(body).then(data => {
+        };
+        await sendOrder(body).then(data => {
             expect(data.id).toBe(17);
         });
     });

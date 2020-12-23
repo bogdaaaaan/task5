@@ -1,5 +1,5 @@
-var regeneratorRuntime = require("regenerator-runtime");
-const fetch = require("node-fetch");
+var regeneratorRuntime = require('regenerator-runtime');
+const fetch = require('node-fetch');
 
 export async function sendOrder(body) {
     const url = 'https://my-json-server.typicode.com/bogdaaaaan/db-pizza/pizza';
